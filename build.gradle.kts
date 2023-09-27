@@ -23,6 +23,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation(kotlin("test-junit5"))
 	testImplementation("io.mockk:mockk:1.13.8")
 }
 
@@ -33,6 +34,19 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-tasks.withType<Test> {
+
+tasks.test {
+	jvmArgs = listOf(
+		"--add-opens", "java.base/java.lang=ALL-UNNAMED",
+		"--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+		"--add-opens", "java.base/java.util=ALL-UNNAMED",
+		"--add-opens", "java.base/java.time=ALL-UNNAMED",
+		"-Duser.timezone=GMT"
+	)
+	testLogging {
+		exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+		showStackTraces = true
+	}
+
 	useJUnitPlatform()
 }

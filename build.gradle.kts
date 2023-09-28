@@ -24,6 +24,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.mockk:mockk:1.13.8")
+	testImplementation(kotlin("test-junit5"))
+	testImplementation("com.appmattus.fixture:fixture:1.2.0")
 }
 
 tasks.withType<KotlinCompile> {

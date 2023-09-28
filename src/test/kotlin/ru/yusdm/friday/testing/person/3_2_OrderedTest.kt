@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 /**
- * New instance of 3_2_OrderedTest is created
+ * New instance of 3_2_OrderedTest is created.
  */
 class `3_2_OrderedTest` {
 

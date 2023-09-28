@@ -4,10 +4,6 @@ import java.util.*
 
 class PersonFacade(private val personService: PersonService) {
 
-    fun save(person: Person): Person {
-        return personService.save(person)
-    }
-
     fun updateName(personId: UUID, newName: String): Person {
         return personService.updateName(
             personId = personId,
@@ -15,6 +11,10 @@ class PersonFacade(private val personService: PersonService) {
             databaseContext = DatabaseContext(ctx = "dbContext"),
             securityContext = SecurityContext(ctx = "securityContext")
         )
+    }
+
+    fun updateNameWithDefaultValues(personId: UUID, newName: String): Person {
+        return personService.updateName(personId = personId, newName = newName)
     }
 
     fun updateNameWithExtensionFunction(personId: UUID, newName: String): Person {

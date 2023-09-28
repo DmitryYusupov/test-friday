@@ -23,7 +23,6 @@ class `1_2_PersonFacadeTestMockk` {
             )
         } returns Person(id = personId, name = personName)
 
-
         //tested method invocation
         val updatedPerson = personFacade.updateName(personId, personName)
 
@@ -57,4 +56,23 @@ class `1_2_PersonFacadeTestMockk` {
             actual = updatedPerson
         )
     }
+
+    @Test
+    fun `shouldUpdate name using def values in mock`() {
+        val personId = UUID.randomUUID()
+        val personName = "PersonName"
+        every {
+            personService.updateName(personId = personId, newName = personName)
+        } returns Person(id = personId, name = personName)
+
+        //tested method invocation
+        val updatedPerson = personFacade.updateNameWithDefaultValues(personId, personName)
+
+        //assertions
+        assertEquals(
+            expected = Person(id = personId, name = personName),
+            actual = updatedPerson
+        )
+    }
+
 }

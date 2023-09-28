@@ -12,8 +12,8 @@ class PersonService {
     fun updateName(
         personId: UUID,
         newName: String,
-        databaseContext: DatabaseContext,
-        securityContext: SecurityContext
+        databaseContext: DatabaseContext = DatabaseContext("default"),
+        securityContext: SecurityContext = SecurityContext("default")
     ): Person {
         return Person(personId, newName)
     }
@@ -24,6 +24,10 @@ class PersonService {
             name = "PersonName",
             dateOfBirth = LocalDate.now()
         )
+    }
+
+    fun getLatestSyncSystemTime(): Long {
+        return System.currentTimeMillis()
     }
 
 }

@@ -12,9 +12,10 @@ class `3_1_MockStatic_Mockito` {
 
     private val uuid = UUID.fromString("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454")
     private val localDate = LocalDate.of(1900, 11, 10)
+    private val latestSystemTime = 1200L
 
     @Test
-    fun `should return oldest person date of birth`() {
+    fun `should return oldest person`() {
         //given
         var localDateStaticStub: MockedStatic<LocalDate>? = null
         var uuidStaticStub: MockedStatic<UUID>? = null
@@ -34,6 +35,20 @@ class `3_1_MockStatic_Mockito` {
         } finally {
             localDateStaticStub?.close()
             uuidStaticStub?.close()
+        }
+    }
+
+    @Test
+    fun `should return latest sync system time`() {
+        val systemStaticStub: MockedStatic<System> = Mockito.mockStatic(System::class.java)
+        systemStaticStub.`when`<Long> { System.currentTimeMillis() }.thenReturn(latestSystemTime)
+
+        val actualSystemLatestTime = systemStaticStub.use {
+            personService.getLatestSyncSystemTime()
+        }
+
+        assertTrue {
+            actualSystemLatestTime == latestSystemTime
         }
     }
 

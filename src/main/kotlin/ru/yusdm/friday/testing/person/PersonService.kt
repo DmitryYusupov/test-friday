@@ -1,5 +1,6 @@
 package ru.yusdm.friday.testing.person
 
+import java.time.LocalDate
 import java.util.UUID
 
 class PersonService {
@@ -16,6 +17,15 @@ class PersonService {
     ): Person {
         return Person(personId, newName)
     }
+
+    fun getOldestPerson(): Person {
+        return Person(
+            id = UUID.randomUUID(),
+            name = "PersonName",
+            dateOfBirth = LocalDate.now()
+        )
+    }
+
 }
 
 data class DatabaseContext(val ctx: String)

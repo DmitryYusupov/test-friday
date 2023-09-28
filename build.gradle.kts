@@ -26,6 +26,7 @@ dependencies {
 	testImplementation("io.mockk:mockk:1.13.8")
 	testImplementation(kotlin("test-junit5"))
 	testImplementation("com.appmattus.fixture:fixture:1.2.0")
+	testImplementation("org.jeasy:easy-random-core:5.0.0")
 }
 
 tasks.withType<KotlinCompile> {

@@ -23,6 +23,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation(kotlin("test-junit5"))
 	testImplementation("io.mockk:mockk:1.13.8")
 }
 

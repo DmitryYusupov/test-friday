@@ -1,1 +1,20 @@
+spring:
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: friday-kafka-group
+  flyway:
+    enabled: true
 
+  docker:
+    compose:
+      enabled: false
+      readiness:
+        timeout: 2m
+      start:
+        command: up
+      stop:
+#        default command is stop, causing container remains
+        command: down

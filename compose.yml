@@ -1,0 +1,43 @@
+services:
+
+  postgresql_15:
+    image: postgres:15
+    restart: on-failure
+    ports:
+      - 5435:5432
+    expose:
+      - '5435'
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=111
+      - POSTGRES_DB=test_friday
+
+  zookeeper:
+    image: 'zookeeper:3.5.5'
+    restart: always
+    networks:
+      - friday
+
+  kafka:
+    image: 'wurstmeister/kafka:2.12-2.2.1'
+    restart: always
+    depends_on:
+      - zookeeper
+    ports:
+      - "7194:7194"
+    expose:
+      - '7194'
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,DEBUG://0.0.0.0:7194
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,DEBUG://localhost:7194
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,DEBUG:PLAINTEXT,
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+      KAFKA_CREATE_TOPICS: "KF.country:1:1"
+    networks:
+      - friday
+
+networks:
+  friday:
+    driver: bridge

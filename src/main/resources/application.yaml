@@ -1,10 +1,16 @@
 spring:
+
   kafka:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
+      enable-auto-commit: false
       group-id: friday-kafka-group
+    listener:
+      type: single
+      ack-mode: manual
+
   flyway:
     enabled: true
 
@@ -18,3 +24,6 @@ spring:
       stop:
 #        default command is stop, causing container remains
         command: down
+
+app:
+  topicName: "KF.country"

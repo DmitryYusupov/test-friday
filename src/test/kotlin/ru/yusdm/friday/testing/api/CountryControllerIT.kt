@@ -9,7 +9,6 @@ import io.restassured.specification.RequestSpecification
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import ru.yusdm.friday.testing.BaseIT
@@ -21,7 +20,6 @@ import java.util.*
 import kotlin.properties.Delegates
 import kotlin.test.assertEquals
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CountryControllerIT : BaseIT() {
 
     @set:LocalServerPort
@@ -29,6 +27,7 @@ class CountryControllerIT : BaseIT() {
 
     @BeforeEach
     fun beforeEach() {
+        clearDatabase()
         mockkStatic(UUID::class)
         every { UUID.randomUUID() } returns uid
     }
@@ -59,7 +58,7 @@ class CountryControllerIT : BaseIT() {
     }
 
     private fun waitKafkaHandledMessage() {
-        Thread.sleep(2000)
+        Thread.sleep(5000)
     }
 
     private val restSpec: RequestSpecification

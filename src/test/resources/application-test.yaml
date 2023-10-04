@@ -6,3 +6,5 @@ spring:
       skip:
         in-tests: false
       enabled: true
+  jpa:
+    show-sql: true

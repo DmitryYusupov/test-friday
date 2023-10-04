@@ -10,7 +10,7 @@ import ru.yusdm.friday.testing.service.CountryService
 class CreateCountryKafkaEventListener(private val countryService: CountryService) {
 
     @KafkaListener(
-        topics = ["country"],
+        topics = ["KF.country"],
         containerFactory = KafkaConfiguration.COUNTRY_LISTENER_FACTORY,
         groupId = "friday-kafka-group"
     )

@@ -44,6 +44,7 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.mockk:mockk-jvm:1.13.2")
 	testImplementation("io.rest-assured:rest-assured")
 	testImplementation("io.mockk:mockk:1.13.8")
 	testImplementation(kotlin("test-junit5"))

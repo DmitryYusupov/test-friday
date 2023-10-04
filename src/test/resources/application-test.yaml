@@ -1,4 +1,6 @@
 spring:
+  kafka:
+    bootstrap-servers: localhost:7194
   docker:
     compose:
       skip:

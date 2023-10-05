@@ -1,0 +1,7 @@
+logging:
+  level:
+    org.springframework.test.context: DEBUG
+#uncomment it to make e_service package work
+#spring:
+#  main:
+#    allow-bean-definition-overriding: true

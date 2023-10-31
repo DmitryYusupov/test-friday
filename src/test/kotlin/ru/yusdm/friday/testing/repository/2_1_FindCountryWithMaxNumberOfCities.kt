@@ -17,7 +17,7 @@ class `2_1_FindCountryWithMaxNumberOfCities` : BaseIT() {
     private lateinit var countryRepository: CountryRepository
 
     @Test
-    fun `should update name`() {
+    fun `should find country with max number cities`() {
         var countryId = 0L
         var cityId = 1L
         //given

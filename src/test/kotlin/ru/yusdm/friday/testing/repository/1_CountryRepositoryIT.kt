@@ -39,7 +39,6 @@ class `1_CountryRepositoryIT` : BaseIT() {
 
     @Test
     fun `should save country 2`() {
-        val actualCountry33 = testEntityManager.find(Country::class.java, 1L)
         //given
         val country = Country(id = 1L, name = "USSR", cities = mutableListOf())
         val cities = mutableListOf(
